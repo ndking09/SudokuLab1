@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class LatinSquare {
 
+	// PLEASE WORK OR KILL ME
 	/**
 	 * LatinSquare - two dimensional array that's the core of the puzzle
 	 * 
