@@ -50,9 +50,14 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	
+	/*
+	protected int[] getRegion(int Col, int Row) {
+		i = ( int iCol / iSqrtSize) * ( int iRow/ iSqrtSize); 
+		return Region; 
+		needs minor tweaking, this is just general format 
+		*/ 
 	
-	protected int[] getRegion(int col, int Row) {
-		return null;
+	
 	}
 	protected boolean isSudoku() {
 		return false;
