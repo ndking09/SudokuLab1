@@ -1,6 +1,7 @@
 package pkgHelper;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class LatinSquare {
 
@@ -12,6 +13,11 @@ public class LatinSquare {
 	 * @since Lab #1
 	 */
 	private int[][] LatinSquare;
+	
+	private boolean bIgnoreZero;
+	
+	
+	
 
 	/**
 	 * No-arg constructor, make it public, don't do anything in the constructor
@@ -46,7 +52,10 @@ public class LatinSquare {
 	public int[][] getLatinSquare() {
 		return LatinSquare;
 	}
-
+	protected void FIgnoreZero  (boolean b) {
+		this.bIgnoreZero=b;
+	}
+	
 	/**
 	 * set LatinSquare instance attribute
 	 * 
@@ -69,6 +78,19 @@ public class LatinSquare {
 	 *            - one dimensional array to check for duplicates
 	 * @return - returns 'true' if any of the elements are duplicate
 	 */
+	private int[] removeZeroesFromArray(int[] arr) {
+		ArrayList<Integer> arrlist = new ArrayList<Integer>();
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != 0) {
+				arrlist.add(arr[i]);
+			}
+		}
+		int[] arrReturn = new int[arrlist.size()];
+		for (int i = 0; i < arrlist.size(); i++) {
+			arrReturn[i] = arrlist.get(i);
+		}
+		return arrReturn;
+	}
 	public boolean hasDuplicates(int[] arr) {
 
 		// TODO: Return 'true' if any element in arr is duplicate
@@ -76,6 +98,9 @@ public class LatinSquare {
 		boolean hasDuplicates = false;
 		int[] sortedArray = Arrays.copyOf(arr, arr.length);
 		Arrays.sort(sortedArray);
+		if (bIgnoreZero) {
+			sortedArray = removeZeroesFromArray(sortedArray);
+		 }
 
 		for (int i = 0; i < sortedArray.length - 1; i++) {
 			if (sortedArray[i] == sortedArray[i + 1]) {

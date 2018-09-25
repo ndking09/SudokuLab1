@@ -41,41 +41,91 @@ public class Sudoku extends LatinSquare {
 		for (; j < jMax; j++) {
 			for (i= (iRegionNbr % iSqrtSize) * iSqrtSize; i < iMax; i++) {
 				
-				System.out.println("J: " j + "  " + "I: " + i);
+				System.out.println("J: " + j + "  " + "I: " + i);
 				
 				reg[iCnt++] =super.getLatinSquare()[j][i];
 			}
 			}
-		return super.getLatinSquare();
+		return reg;
 	}
 	
 	
-	/*
+	
 	protected int[] getRegion(int Col, int Row) {
-		i = ( int iCol / iSqrtSize) * ( int iRow/ iSqrtSize); 
-		return Region; 
-		needs minor tweaking, this is just general format 
-		*/ 
+		int i = (  Col / iSqrtSize) + ( Row/ iSqrtSize)*(iSqrtSize); 
+		return getRegion(i); 
+	}
 	
 	
-	}
-	protected boolean isSudoku() {
-		return false;
-	}
+	
 	
 	protected boolean isPartialSudoku() {
+		for ( int i=0; i < super.getLatinSquare().length;  i++) {
+			if (hasDuplicates(getRow(i)))
+				return true;
+		}
+			
+		for (int j =0; j < super.getLatinSquare().length; j++) {
+			if (hasDuplicates(getColumn(j)))
+				return true;
+	}
+	if (!ContainsZero()) {
 		return false;
 	}
+	return true;
+	}
+	
+	
+	
+	protected boolean isSudoku() {
+		if (ContainsZero()) 
+			return false;
+		
+		for ( int i=0; i < super.getLatinSquare().length;  i++) {
+			if (hasDuplicates(getRow(i)))
+				return false;
+		}
+			
+		for (int j =0; j < super.getLatinSquare().length; j++) {
+			if (hasDuplicates(getColumn(j)))
+				return false; 
+	    }
+		if (!super.isLatinSquare())
+				return false;
+		
+		for(int i = 1; i < super.getLatinSquare().length; i++) {
+			if (!hasAllValues(getRow(0), getRegion(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	
+	
 	
 	protected boolean isValueValid(int iValue, int Col, int Row) {
+		if (!super.doesElementExist(super.getRow(Row), iValue)) {
+			if (!super.doesElementExist(super.getColumn(Col), iValue)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	}
 	
 	
 	
 	
-}
+
 
