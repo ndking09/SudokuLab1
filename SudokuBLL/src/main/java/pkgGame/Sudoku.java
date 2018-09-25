@@ -9,6 +9,12 @@ public class Sudoku extends LatinSquare {
 	private int iSize;
 	private int iSqrtSize; 
 	
+	public int getiSize() {
+		return iSize;
+	}
+	
+	
+	
 	
 	public Sudoku() {
 		super();
